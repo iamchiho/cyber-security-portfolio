@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
- # Cybersecurity Side Projects Portfolio
+ # Cyber Security Showcase
 
 Welcome to my cybersecurity side projects showcase!  
 This website presents my hands-on projects that demonstrate my skills in vulnerability assessment, threat detection, and security tooling.

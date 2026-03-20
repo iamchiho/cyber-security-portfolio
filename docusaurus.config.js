@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'CCyber Security Showcase',
+  title: 'CCyber Security Portfolio',
   tagline: 'Exposure Management · Vulnerability Risk · Security Engineering',
   favicon: 'img/favicon.ico',
 
@@ -66,7 +66,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Cyber Security Showcase',
+        title: 'Cyber Security Portfolio',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -76,7 +76,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Projects',
+            label: 'Showcases',
           },
           {
             href: 'https://github.com/iamchiho/cyber-security-portfolio',
