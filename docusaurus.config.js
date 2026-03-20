@@ -66,8 +66,8 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Cyber Security Portfolio',
-        logo: {
+          title: 'Cyber Security Showcase',
+          tagline: 'Exposure Management · Vulnerability Risk · Security Engineering',        logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
