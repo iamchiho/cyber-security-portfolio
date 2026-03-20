@@ -24,4 +24,4 @@ build/
 node_modules/
 
 # Ignore local deployment scripts
-_deploy.sh
+deploy.sh
