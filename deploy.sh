@@ -1,29 +1,67 @@
 #!/bin/bash
-# 一鍵更新 + 部署 Cyber Security Portfolio
-# 使用方式: ./deploy.sh "Your commit message"
+# 🔹 Cyber Security Portfolio - Full Safe Deploy Script
+# Usage: ./deploy.sh "Your commit message"
 
-# 讀取 commit message 參數，沒有就用預設
 COMMIT_MSG=${1:-"Update portfolio"}
+BUILD_DIR="build"
+WEBSITE_URL="https://iamchiho.github.io/cyber-security-portfolio/"
 
-echo "Checking for changes..."
+echo "---------------------------------------------"
+echo "✅ Cyber Security Portfolio Deployment Script"
+echo "Commit message: $COMMIT_MSG"
+echo "---------------------------------------------"
+
+# Step 1: Check for changes
+echo "🔎 Checking for local changes..."
 if git diff-index --quiet HEAD --; then
-    echo "No changes detected. Skipping commit, push, build, and deploy."
+    echo "⚠️ No changes detected. Skipping commit, push, build, and deploy."
     exit 0
 fi
 
-echo "Staging changes..."
+# Step 2: Check node_modules
+if [ ! -d "node_modules" ]; then
+    echo "❌ Error: node_modules not found. Please run 'npm install' first."
+    exit 1
+fi
+
+# Step 3: Stage and commit changes
+echo "📂 Staging changes..."
 git add .
 
-echo "Committing changes..."
+echo "📝 Committing changes..."
 git commit -m "$COMMIT_MSG"
 
-echo "Pushing to main branch..."
+# Step 4: Push to GitHub main
+echo "🚀 Pushing to main branch..."
 git push origin main
+if [ $? -ne 0 ]; then
+    echo "❌ Error: Git push failed."
+    exit 1
+fi
 
-echo "Building website..."
+# Step 5: Clean old build folder
+if [ -d "$BUILD_DIR" ]; then
+    echo "🧹 Cleaning old build folder..."
+    rm -rf $BUILD_DIR
+fi
+
+# Step 6: Build website
+echo "🏗 Building website..."
 npm run build
+if [ $? -ne 0 ]; then
+    echo "❌ Error: Build failed. Deployment aborted."
+    exit 1
+fi
 
-echo "Deploying to GitHub Pages..."
+# Step 7: Deploy to GitHub Pages
+echo "🌐 Deploying to GitHub Pages..."
 GIT_USER=iamchiho USE_SSH=true npx docusaurus deploy
+if [ $? -ne 0 ]; then
+    echo "❌ Error: Deployment failed."
+    exit 1
+fi
 
-echo "Done! Your website should be updated at https://iamchiho.github.io/cyber-security-portfolio/"
+echo "---------------------------------------------"
+echo "✅ Deployment complete! Website updated at:"
+echo "   $WEBSITE_URL"
+echo "---------------------------------------------"
