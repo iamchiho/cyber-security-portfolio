@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkwebsite=globalThis.webpackChunkwebsite||[]).push([[1903],{1912(o){o.exports=JSON.parse('{"blogBasePath":"/cyber-security-portfolio/blog","blogTitle":"Blog","authorsListPath":"/cyber-security-portfolio/blog/authors"}')}}]);
