@@ -2,46 +2,44 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+ # Cybersecurity Side Projects Portfolio
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to my cybersecurity side projects showcase!  
+This website presents my hands-on projects that demonstrate my skills in vulnerability assessment, threat detection, and security tooling.
 
-## Getting Started
+---
 
-Get started by **creating a new site**.
+## 🛠 Projects Overview
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### 1️⃣ AI Vulnerability Prioritization
+- Python project for prioritizing vulnerabilities
+- Demonstrates risk scoring, CVSS analysis, and actionable reporting
+- [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization)
 
-### What you'll need
+### 2️⃣ SIEM Threat Detection
+- Lab setup and custom detection rules for SIEM
+- Includes detection workflow, alert tuning, and log analysis
+- [GitHub repo](https://github.com/iamchiho/siem-threat-detect)
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+---
 
-## Generate a new site
+## 📂 How to Navigate
 
-Generate a new Docusaurus site using the **classic template**.
+- Use the **sidebar** on the left to explore each project step by step  
+- Each project contains detailed **steps**, including setup, execution, and results  
+- Click on each step to see explanations, code snippets, and screenshots
 
-The classic template will automatically be added to your project after you run the command:
+---
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## 🚀 Why These Projects
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+- Demonstrates practical security skills for hands-on scenarios  
+- Shows ability to build, test, and document security workflows  
+- Portfolio designed for hiring managers, recruiters, or collaborators to easily explore my work
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+---
 
-## Start your site
+## 📌 Contact & GitHub
 
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- All projects are hosted on [GitHub](https://github.com/iamchiho/)  
+- Feel free to explore the repos or reach out for collaboration
