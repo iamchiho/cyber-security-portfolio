@@ -31,3 +31,4 @@ Under **Hosts**, you may put an IP address of a single host or a CIDR (e.g. 192.
 
 On manu bar, select **Scan**, **Tasks**, click ![OpenVAS Dashboard](/img/ai-vuln-prioritization/create_new_scan_task.png)
 
+
