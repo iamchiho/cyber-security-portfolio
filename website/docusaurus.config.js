@@ -10,8 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'CCyber Security Portfolio',
-  tagline: 'Exposure Management · Vulnerability Risk · Security Engineering',
+  title: 'Cyber Security Portfolio',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -66,8 +65,8 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-          title: 'Cyber Security Showcase',
-          tagline: 'Exposure Management · Vulnerability Risk · Security Engineering',        logo: {
+        title: 'Cyber Security Portfolio',
+        logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },

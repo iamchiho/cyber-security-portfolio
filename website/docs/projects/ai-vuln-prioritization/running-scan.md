@@ -29,6 +29,18 @@ Under **Hosts**, you may put an IP address of a single host or a CIDR (e.g. 192.
 
 ## 3. Create a Scan
 
-On manu bar, select **Scan**, **Tasks**, click ![OpenVAS Dashboard](/img/ai-vuln-prioritization/create_new_scan_task.png)
+On the menu bar, select **Scans → Tasks**, then click **New Task**.
 
-dsafdsfdsfaadsfsdafdfsaadsfsadf
+![Create Scan Task](/img/ai-vuln-prioritization/create_scan_task.png)
+
+Click **Save**. You will see the new scan task.
+
+![Task List](/img/ai-vuln-prioritization/show_task_list.png)
+
+Click **Start** to begin the scan.
+
+## 4. View Scan Results
+
+After the scan completes, go to **Results** on the left panel.
+
+![Scan Results](/img/ai-vuln-prioritization/show_results.png)
