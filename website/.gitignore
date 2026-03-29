@@ -26,11 +26,3 @@ node_modules/
 
 # Ignore local deployment scripts
 deploy.sh
-
-# OpenVAS outputs
-*.xml
-*.csv
-*.json
-openvas_reports/
-openvas_parsed_results/
-openvas_aggregated_results/
