@@ -1,5 +1,5 @@
 ---
-title: "Password Spraying"
+title: "🔑 Use Case 1: Password Spraying"
 sidebar_position: 2
 ---
 
