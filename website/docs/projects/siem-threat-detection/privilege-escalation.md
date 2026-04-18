@@ -50,6 +50,28 @@ Audit Logs are collected via data connectors and ingested into Microsoft Sentine
 ### Step 4: Analytics rule evaluates the activity
 A KQL-based analytics rule detects role assignment events.
 
+```sql
+AuditLogs
+| where OperationName contains "Add member to role"
+| extend Initiator = tostring(InitiatedBy.user.userPrincipalName)
+| extend Target = tostring(TargetResources[0].userPrincipalName)
+| extend Role = tostring(TargetResources[0].displayName)
+| project TimeGenerated,
+          OperationName,
+          Initiator,
+          Target,
+          Role,
+          Result
+| order by TimeGenerated desc
+```
+
+**Entity Mapping**
+
+- Account → InitiatedBy.user.userPrincipalName  
+- Target Account → TargetResources.userPrincipalName  
+
+![OpenVAS Dashboard](/img/siem-threat-detection/03-entity-mapping.png)
+
 ---
 
 ### Step 5: Alert is generated
@@ -59,6 +81,12 @@ Sentinel generates an alert when a privileged role assignment is detected.
 
 ### Step 6: Incident is created
 The alert is grouped into an incident for investigation.
+
+**Incidet is created**
+![OpenVAS Dashboard](/img/siem-threat-detection/03-incident-list.png)
+
+**View incident details**
+![OpenVAS Dashboard](/img/siem-threat-detection/03-incident-details.png)
 
 ---
 
@@ -80,20 +108,7 @@ The analyst reviews:
 
 ## 🔍 KQL Query
 
-```sql
-AuditLogs
-| where OperationName contains "Add member to role"
-| extend Initiator = tostring(InitiatedBy.user.userPrincipalName)
-| extend Target = tostring(TargetResources[0].userPrincipalName)
-| extend Role = tostring(TargetResources[0].displayName)
-| project TimeGenerated,
-          OperationName,
-          Initiator,
-          Target,
-          Role,
-          Result
-| order by TimeGenerated desc
-```
+
 
 ---
 
