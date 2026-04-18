@@ -1,5 +1,5 @@
 ---
-title: "Impossible Travel"
+title: "🔑 Use Case 2: Impossible Travel"
 sidebar_position: 3
 ---
 
