@@ -11,7 +11,7 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 
 ## 🛠 Projects Overview
 
-### 1️⃣ AI Vulnerability Prioritization
+### 1️⃣ AI Vulnerability Prioritization (in progress)
 - Python project for prioritizing vulnerabilities
 - Demonstrates risk scoring, CVSS analysis, and actionable reporting
 - [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization)
@@ -43,5 +43,3 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 
 - All projects are hosted on [GitHub](https://github.com/iamchiho/)  
 - Feel free to explore the repos or reach out for collaboration
-
-Test local update
