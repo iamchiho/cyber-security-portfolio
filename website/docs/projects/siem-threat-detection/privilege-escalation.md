@@ -85,7 +85,7 @@ The alert is grouped into an incident for investigation.
 **Incidet is created**
 ![OpenVAS Dashboard](/img/siem-threat-detection/03-incident-list.png)
 
-**View incident details**
+**View igincident details**
 ![OpenVAS Dashboard](/img/siem-threat-detection/03-incident-details.png)
 
 ---
