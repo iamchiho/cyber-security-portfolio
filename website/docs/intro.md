@@ -16,7 +16,7 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 - Demonstrates risk scoring, CVSS analysis, and actionable reporting
 - [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization)
 
-### 2️⃣ SIEM Threat Detection (coming soon)
+### 2️⃣ SIEM Threat Detection
 - Lab setup and custom detection rules for SIEM
 - Includes detection workflow, alert tuning, and log analysis
 - [GitHub repo](https://github.com/iamchiho/siem-threat-detect)
