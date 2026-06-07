@@ -31,6 +31,10 @@ Nessus Essentials requires a free activation code from Tenable.
 2. Fill in your name and email address
 3. Tenable will email you an activation code — save it for later
 
+:::note Nessus Essentials Limitation
+Nessus Essentials is free but limited to scanning **16 IP addresses**. This is sufficient for home lab and learning environments. If you need to scan more IPs, you will need to upgrade to **Nessus Professional**.
+:::
+
 ---
 
 ## 3. Download Nessus
