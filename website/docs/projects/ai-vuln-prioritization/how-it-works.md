@@ -101,7 +101,21 @@ Each asset receives a **Criticality Score from 0 to 100**, calculated across thr
 | Service Criticality | 35 | How business-critical the running services are |
 | Vulnerability Risk | 25 | Severity counts, EPSS, exploit maturity, and CISA KEV hits |
 
-The subtotal is then multiplied by a **device-type factor** (×0.4 for mobile, up to ×1.4 for routers/gateways) to reflect inherent risk by device role.
+The subtotal is then multiplied by a **device-type factor** to reflect the inherent risk of the device's role on the network:
+
+| Device Type | Multiplier |
+|---|:---:|
+| Router / Gateway | ×1.40 |
+| Router / Gateway (inferred) | ×1.30 |
+| Firewall | ×1.30 |
+| Hypervisor | ×1.30 |
+| Windows Server | ×1.20 |
+| Linux Server | ×1.20 |
+| Network Device | ×1.20 |
+| NAS | ×1.15 |
+| macOS / Linux | ×1.00 |
+| Windows Workstation | ×0.90 |
+| Mobile (iOS / Android) | ×0.40 |
 
 ```
 Final Score = min(100, round((Exposure + Service + Vuln Risk) × Multiplier))
