@@ -82,6 +82,34 @@ By combining structured Nessus scan data with Claude's contextual reasoning, the
 
 ---
 
+# Where AI Makes the Difference
+
+The pipeline has two distinct layers — rule-based scoring and AI reasoning. They solve different problems.
+
+**Rule-based scoring (Python)** handles what can be computed deterministically:
+
+| What it does | How |
+|---|---|
+| Calculate asset criticality score (0–100) | Weighted formula across exposure, services, and vuln risk |
+| Flag actively exploited CVEs | CISA KEV lookup |
+| Classify device type | CPE and OS string matching |
+| Map findings to Cyber Essentials | Keyword matching against plugin names |
+
+**AI reasoning (Claude)** handles what rules alone cannot:
+
+| What it does | Why AI is needed |
+|---|---|
+| Interpret findings in business context | A database server with SMB exposed means something very different to a workstation — AI understands the nuance |
+| Explain *why* a vulnerability is high priority | Beyond a numeric score, Claude articulates the risk in plain language a non-technical stakeholder can act on |
+| Correlate findings across multiple hosts | Patterns across assets (e.g. same misconfiguration on all Linux servers) reveal systemic issues that per-finding scores miss |
+| Generate remediation guidance tailored to the environment | Generic patch advice vs. specific, prioritised steps considering the asset's role and exposure |
+
+:::tip In short
+Python scores. Claude explains. Together they transform a raw vulnerability list into a prioritised action plan with business justification.
+:::
+
+---
+
 ## How to Use This Project
 
 - Browse the **docs** to understand the workflow and design decisions.
