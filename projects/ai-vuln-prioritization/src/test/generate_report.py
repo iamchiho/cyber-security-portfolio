@@ -1575,6 +1575,7 @@ let sevFilter    = 'All';
 let searchQ      = '';
 let hostFilter   = '';
 let exploitFilter = '';
+let kevFilter    = false;
 let vulnPage     = 0;
 let expandedId   = null;
 let sortCol      = null;
@@ -1596,6 +1597,7 @@ function setPage(id) {
 function setPageClearHost(id) {
   hostFilter    = '';
   exploitFilter = '';
+  kevFilter     = false;
   vulnPage      = 0;
   setPage(id);
   if (id === 'vulns') { renderVulnTable(); updateHostBadge(); updateExploitBadge(); }
@@ -1653,6 +1655,7 @@ function clearExploitFilter() {
 function getFiltered() {
   let result = vulns.filter(v => {
     if (sevFilter !== 'All' && v.sev !== sevFilter) return false;
+    if (kevFilter && !v.kev) return false;
     if (hostFilter) {
       const hosts = (v.hosts || '').split(';').map(h => h.trim());
       if (!hosts.includes(hostFilter)) return false;
@@ -1811,8 +1814,22 @@ function renderVulnTable() {
 function setSevFilter(s) {
   sevFilter     = s;
   exploitFilter = '';
+  kevFilter     = false;
   vulnPage      = 0;
   document.querySelectorAll('.fbtn').forEach(b => b.classList.toggle('active', b.dataset.sev === s));
+  document.getElementById('kev-filter-btn').classList.remove('active');
+  updateExploitBadge();
+  renderVulnTable();
+}
+
+function setKevFilter(forceOn) {
+  kevFilter     = forceOn !== undefined ? forceOn : !kevFilter;
+  sevFilter     = 'All';
+  exploitFilter = '';
+  vulnPage      = 0;
+  document.querySelectorAll('.fbtn[data-sev]').forEach(b =>
+    b.classList.toggle('active', b.dataset.sev === 'All' && !kevFilter));
+  document.getElementById('kev-filter-btn').classList.toggle('active', kevFilter);
   updateExploitBadge();
   renderVulnTable();
 }
@@ -2316,6 +2333,16 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
         key=lambda v: float(v["epss_score"]), reverse=True
     )[:10]
 
+    # ── KEV counts ──
+    def _vuln_has_kev(v: dict) -> bool:
+        if not kev_lookup:
+            return False
+        return any(c.strip() in kev_lookup for c in (v.get("cve") or "").split(";") if c.strip())
+
+    kev_vulns = [v for v in vulns if _vuln_has_kev(v) and v.get("seen_in_latest_run") != "No"]
+    kev_count = len(kev_vulns)
+    top_kev = sorted(kev_vulns, key=lambda v: v.get("severity", 0), reverse=True)[:10]
+
     # ── software inventory ──
     software = extract_software_inventory(assets)
 
@@ -2413,6 +2440,33 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
         for v in top_epss
     )
 
+    SEV_STYLES = {
+        "Critical": ("#2d0808", "#E84040"),
+        "High":     ("#2d1808", "#E87840"),
+        "Medium":   ("#2d2008", "#E8B030"),
+        "Low":      ("#282200", "#E8D040"),
+    }
+    kev_rows = ""
+    for v in top_kev:
+        sbg, sfg = SEV_STYLES.get(v["severity_label"], ("#1c2330", "#8b949e"))
+        name = v["plugin_name"]
+        name_esc = esc(name[:60] + "…" if len(name) > 60 else name)
+        cve_str = esc((v.get("cve") or "").split(";")[0].strip())
+        kev_rows += (
+            f'<div class="bar-row clickable" onclick="goToVuln(\'{js_str(name)}\',\'\')" title="{esc(name)}">'
+            f'<span class="sev-pill" style="background:{sbg};color:{sfg};margin-right:6px">{esc(v["severity_label"])}</span>'
+            f'<div class="bar-label" style="width:auto;flex:1;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{name_esc}</div>'
+            f'<span style="font-size:10px;color:#8b949e;font-family:IBM Plex Mono,monospace;flex-shrink:0;margin-left:8px">{cve_str}</span>'
+            f'</div>'
+        )
+    kev_empty = '<div style="color:var(--muted);font-size:13px">No KEV matches found in current scan results.</div>'
+    kev_overview_card = (
+        f'<div class="card" style="margin-bottom:1.25rem">'
+        f'<div class="card-title" style="color:#ff6b6b">🔴 CISA KEV — Confirmed Actively Exploited ({kev_count} findings)</div>'
+        f'{kev_rows if top_kev else kev_empty}'
+        f'</div>'
+    )
+
     overview_html = f"""
     <div class="page-title">Overview</div>
     <div class="page-subtitle">
@@ -2421,7 +2475,7 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
       &nbsp;·&nbsp; Generated {generated}
     </div>
 
-    <div class="metrics">
+    <div class="metrics" style="grid-template-columns:repeat(5,1fr)">
       <div class="metric">
         <div class="metric-label">Critical</div>
         <div class="metric-val" style="color:#E84040">{c}</div>
@@ -2438,6 +2492,11 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
         <div class="metric-label">Open findings</div>
         <div class="metric-val" style="color:#e6edf3">{total_open}</div>
       </div>
+      <div class="metric" style="border-color:#7a1f1f;cursor:pointer" onclick="setPageClearHost('vulns');setTimeout(()=>setKevFilter(true),50)" title="Filter vulnerabilities by CISA KEV">
+        <div class="metric-label" style="color:#ff6b6b">🔴 CISA KEV</div>
+        <div class="metric-val" style="color:#ff6b6b">{kev_count}</div>
+        <div style="font-size:10px;color:#8b6b6b;margin-top:2px">actively exploited</div>
+      </div>
     </div>
 
     <div class="charts-row">
@@ -2450,6 +2509,7 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
       </div>
       <div class="card"><div class="card-title">Top EPSS scores — exploitation probability</div>{epss_bars}</div>
     </div>
+    {kev_overview_card}
     """
 
     # ─────────────────────────────────────────────────────────────
@@ -2464,6 +2524,7 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
     <div class="page-subtitle">Click a row to expand synopsis, solution, and EPSS detail &nbsp;·&nbsp; Click column headers to sort</div>
     <div class="filter-row">
       {filter_btns}
+      <button class="fbtn" id="kev-filter-btn" data-sev="KEV" onclick="setKevFilter()" title="Show only CISA KEV — confirmed actively exploited">🔴 KEV</button>
       <input class="sbox" placeholder="Search name, CVE, host…" oninput="setSearch(this.value)">
       <span id="host-badge" style="display:none;align-items:center;gap:5px;font-size:11px;
             padding:3px 10px;border-radius:20px;background:#0d2035;color:#58a6ff;
