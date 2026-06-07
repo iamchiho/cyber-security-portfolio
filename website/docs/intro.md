@@ -11,10 +11,10 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 
 ## 🛠 Projects Overview
 
-### 1️⃣ AI Vulnerability Prioritization (in progress)
-- Python project for prioritizing vulnerabilities
-- Demonstrates risk scoring, CVSS analysis, and actionable reporting
-- [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization)
+### 1️⃣ AI Vulnerability Prioritization ✅
+- Combines Nessus scan results, CISA KEV threat intelligence, and Claude AI to generate prioritised security reports
+- Demonstrates asset criticality scoring, EPSS analysis, Cyber Essentials assessment, and actionable remediation guidance
+- [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization) · [Sample Report](https://iamchiho.github.io/cyber-security-portfolio/reports/nessus_report_latest.html)
 
 ### 2️⃣ SIEM Threat Detection
 - Lab setup and custom detection rules for SIEM
