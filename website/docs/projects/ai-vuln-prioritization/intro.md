@@ -7,13 +7,37 @@ sidebar_position: 1
 
 This project enhances vulnerability management by combining Nessus scan results with AI-driven risk prioritization. Enterprise vulnerability scans often produce hundreds of findings, making it difficult for security teams to identify what truly matters.
 
-To address this, the project ingests Nessus scan reports, enriches findings with asset criticality context, and uses an LLM to produce actionable, prioritized remediation guidance.
+To address this, the project ingests Nessus scan reports, enriches findings with asset criticality context, live threat intelligence, and uses an LLM to produce actionable, prioritized remediation guidance.
+
+---
+
+# The Problem
+
+Vulnerability scanners like Nessus are excellent at discovering security weaknesses — but the raw output has several significant gaps when it comes to real-world decision-making:
+
+**1. Technical findings without business context**
+
+A raw Nessus report lists hundreds of CVEs with CVSS scores, but CVSS measures theoretical severity — not actual business risk. A Critical CVE on a development laptop and a Critical CVE on a production database server are treated identically, even though the business impact is worlds apart. Security teams need risk scores that account for **what the asset does**, **how exposed it is**, and **how likely the vulnerability is to be exploited**.
+
+**2. No indication of active exploitation**
+
+CVSS scores are static — they do not tell you whether a vulnerability is being actively exploited in the wild right now. Without threat intelligence enrichment, teams have no way to distinguish theoretical risk from confirmed, active threats targeting their environment.
+
+**3. No regulatory alignment**
+
+Raw scan results are not mapped to compliance frameworks. A security manager preparing for a **Cyber Essentials** assessment cannot directly use a Nessus report to understand their pass/fail posture — they must manually cross-reference hundreds of findings against framework requirements. This is time-consuming and error-prone.
+
+**4. Volume without prioritisation**
+
+A typical enterprise scan produces 300–500+ findings. Without automated prioritisation, remediation effort is often misallocated — teams patch low-risk issues first simply because they appear at the top of a sorted list, while critical, actively-exploited vulnerabilities wait.
 
 ---
 
 # Project Objective
 
-The goal is to bridge the gap between raw vulnerability detection and risk-based decision-making — transforming Nessus HTML reports into structured, AI-analyzed outputs that help teams focus on the highest-impact issues first.
+The goal is to bridge the gap between raw vulnerability detection and risk-based decision-making — by enriching Nessus scan data with asset criticality scoring, live threat intelligence (CISA KEV), and AI-driven analysis to produce reports that answer the question security teams actually need answered:
+
+> **"What do we fix first, and why does it matter to the business?"**
 
 ---
 
