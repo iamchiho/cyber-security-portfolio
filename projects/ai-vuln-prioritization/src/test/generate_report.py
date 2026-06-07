@@ -1772,15 +1772,17 @@ function renderVulnTable() {
     const expHtml = v.exploit
       ? `<span class="badge" style="background:${eBg};color:${eFg}">${v.exploit}</span>` : '—';
     const kevBadge = v.kev ? '<span class="kev-badge" title="CISA KEV — Confirmed actively exploited in the wild">KEV</span>' : '';
+    const hostTags = (v.hosts || '').split(';').map(h => h.trim()).filter(Boolean)
+      .map(h => `<span class="sw-host-tag" onclick="setHostFilter('${h}')" title="Filter by ${h}">${h}</span>`).join(' ');
     const detail = `<div class="vdetail${isOpen?' open':''}" id="detail-${eid}">
-      <b>Synopsis:</b> ${v.synopsis}<br>
-      <b>Solution:</b> ${v.solution}<br>
-      <b>Hosts:</b> ${v.hosts}
+      <b>Synopsis:</b> ${v.synopsis}<br><br>
+      <b>Solution:</b> ${v.solution}<br><br>
+      <b>Affected Hosts (${(v.hosts||'').split(';').filter(h=>h.trim()).length}):</b><br><div style="margin-top:4px">${hostTags || '<span style="color:var(--muted)">—</span>'}</div>
       ${v.cve ? `<br><b>CVE:</b> ${v.cve}` : ''}
       ${v.kev ? `&nbsp;·&nbsp;<span class="kev-badge">KEV</span> <span style="font-size:11px;color:#ff6b6b">Confirmed actively exploited (CISA KEV)</span>` : ''}
       ${v.vpr ? `&nbsp;·&nbsp;<b>VPR:</b> ${v.vpr}` : ''}
       ${epssVal !== null ? `&nbsp;·&nbsp;<b>EPSS:</b> ${(epssVal*100).toFixed(2)}% probability of exploitation within 30 days` : ''}
-      ${v.description ? `<br><b>Description:</b> ${v.description.slice(0,300)}${v.description.length>300?'…':''}` : ''}
+      ${v.description ? `<br><br><b>Description:</b> ${v.description.slice(0,300)}${v.description.length>300?'…':''}` : ''}
     </div>`;
     return `<tr>
       <td><span class="sev-pill" style="background:${sevBg};color:${sevFg}">${v.sev}</span></td>
@@ -2382,8 +2384,8 @@ def build_html(vulns: list, assets: list, summary: dict, kev_lookup: dict | None
             "exploit":  v.get("exploit_code_maturity", ""),
             "port":     v.get("port", "0"),
             "proto":    v.get("protocol", ""),
-            "hosts":    v.get("currently_impacted_hosts", ""),
-            "hostCount":v.get("currently_impacted_host_count", 0),
+            "hosts":    v.get("currently_impacted_hosts", "") or v.get("impacted_hosts", ""),
+            "hostCount":v.get("currently_impacted_host_count", 0) or v.get("impacted_host_count", 0),
             "synopsis": (v.get("synopsis") or "")[:200],
             "solution": (v.get("solution") or "")[:200],
             "description": (v.get("description") or "")[:300],
