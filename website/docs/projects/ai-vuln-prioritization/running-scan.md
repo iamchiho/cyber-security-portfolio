@@ -66,12 +66,3 @@ Once the scan completes, click on the scan name to view the results.
 
 ![Scan Results Vulnerability Summary](/img/ai-vuln-prioritization/step5-scan-results-vuln-summary.png)
 
-## 8. Export the Scan Report
-
-To use the scan results for AI-based prioritization, export the report in **HTML** format:
-
-1. Click **Report** (top right of the scan results page)
-2. Select **HTML** as the format
-3. Click **Export**
-
-The exported HTML report will be used as input for the Python processing pipeline in the next step.
