@@ -42,5 +42,6 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 ## 📌 Contact & GitHub
 
 - 📧 [chiho0724@gmail.com](mailto:chiho0724@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/leo-chan-08845515/)
 - 💻 [GitHub](https://github.com/iamchiho/)
 - Feel free to explore the repos or reach out for collaboration

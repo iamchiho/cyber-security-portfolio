@@ -116,6 +116,10 @@ const config = {
                 label: 'Email',
                 href: 'mailto:chiho0724@gmail.com',
               },
+              {
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/leo-chan-08845515/',
+              },
             ],
           },
         ],
