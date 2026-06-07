@@ -15,6 +15,8 @@ Usage:
   python generate_report.py --output my_report.html
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import sys
