@@ -44,9 +44,9 @@ Within this project, Python is responsible for:
 - Generating final prioritized reports
 
 
-**OpenAI (LLM Integration)**
+**Claude (Anthropic)**
 
-OpenAI provides the Large Language Model (LLM) used for intelligent risk analysis.
+Claude is the Large Language Model (LLM) developed by Anthropic, used for intelligent risk analysis in this project.
 
 The LLM is applied to:
 - Analyze vulnerability context beyond raw CVSS scores
@@ -54,7 +54,7 @@ The LLM is applied to:
 - Produce human-readable remediation summaries
 - Recommend prioritized remediation actions
 
-By combining structured Nessus scan data with contextual AI reasoning, the project delivers more intelligent, business-aware risk prioritization beyond traditional static scoring models.
+By combining structured Nessus scan data with Claude's contextual reasoning, the project delivers more intelligent, business-aware risk prioritization beyond traditional static scoring models.
 
 ---
 
