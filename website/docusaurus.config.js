@@ -72,7 +72,7 @@ const config = {
       navbar: {
         title: 'Cyber Security Portfolio',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Chiho Cyber Security Portfolio',
           src: 'img/logo.svg',
         },
         items: [
@@ -93,42 +93,33 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Projects',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'AI Vulnerability Prioritization',
+                to: '/docs/projects/ai-vuln-prioritization/intro',
+              },
+              {
+                label: 'SIEM Threat Detection',
+                to: '/docs/projects/siem-threat-detection/intro',
               },
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
+            title: 'Contact',
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/iamchiho',
+              },
+              {
+                label: 'Email',
+                href: 'mailto:chiho0724@gmail.com',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Chiho. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

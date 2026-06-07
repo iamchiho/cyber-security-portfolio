@@ -16,7 +16,7 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 - Demonstrates asset criticality scoring, EPSS analysis, Cyber Essentials assessment, and actionable remediation guidance
 - [GitHub repo](https://github.com/iamchiho/ai-vuln-prioritization) · [Sample Report](https://iamchiho.github.io/cyber-security-portfolio/reports/nessus_report_latest.html)
 
-### 2️⃣ SIEM Threat Detection
+### 2️⃣ SIEM Threat Detection ✅
 - Lab setup and custom detection rules for SIEM
 - Includes detection workflow, alert tuning, and log analysis
 - [GitHub repo](https://github.com/iamchiho/siem-threat-detect)
@@ -41,5 +41,6 @@ This website presents my hands-on projects that demonstrate my skills in vulnera
 
 ## 📌 Contact & GitHub
 
-- All projects are hosted on [GitHub](https://github.com/iamchiho/)  
+- 📧 [chiho0724@gmail.com](mailto:chiho0724@gmail.com)
+- 💻 [GitHub](https://github.com/iamchiho/)
 - Feel free to explore the repos or reach out for collaboration
